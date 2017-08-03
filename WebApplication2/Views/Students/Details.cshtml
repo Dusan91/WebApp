@@ -1,0 +1,57 @@
+﻿@model WebApplication2.Models.Student
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Student</h4>
+    <hr />
+    <h1>@Model.Name</h1>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Model.Name
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Surname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Surname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DatumRodjenja)
+        </dt>
+
+        <dd>
+            @Model.DatumRodjenja.ToString("dd MMMM yyyy")
+        </dd>
+
+        <dt>
+            Adresa
+        </dt>
+
+        <dd>
+            @*Novo*@
+            @if(Model.Adresa != null){
+                @Html.Raw(string.Format("{0} {1}", Model.Adresa.Ulica, Model.Adresa.Broj))
+            }   
+            </br>
+            @Html.DisplayFor(model => model.Adresa.Ulica) @Html.DisplayFor(model => model.Adresa.Broj)
+            @*Novo*@
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
